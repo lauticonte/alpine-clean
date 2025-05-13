@@ -115,7 +115,7 @@ export async function POST() {
     // Crear contratos de ejemplo (más cantidad y variedad)
     const contratos = [
       {
-        id: "C-2023-001",
+        id: "C-2025-001",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora ABC")?.id,
         fecha_inicio: fechaHace3Meses.toISOString().split("T")[0],
         fecha_fin: fechaEn1Mes.toISOString().split("T")[0],
@@ -124,7 +124,7 @@ export async function POST() {
         observaciones: "Contrato para obra en construcción",
       },
       {
-        id: "C-2023-002",
+        id: "C-2025-002",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos XYZ")?.id,
         fecha_inicio: fechaHace2Meses.toISOString().split("T")[0],
         fecha_fin: fechaEn5Dias.toISOString().split("T")[0],
@@ -133,7 +133,7 @@ export async function POST() {
         observaciones: "Evento corporativo",
       },
       {
-        id: "C-2023-003",
+        id: "C-2025-003",
         cliente_id: clientesData.find((c) => c.nombre === "Municipalidad de San Martín")?.id,
         fecha_inicio: fechaHace1Mes.toISOString().split("T")[0],
         fecha_fin: fechaEn3Meses.toISOString().split("T")[0],
@@ -142,7 +142,7 @@ export async function POST() {
         observaciones: "Evento municipal",
       },
       {
-        id: "C-2023-004",
+        id: "C-2025-004",
         cliente_id: clientesData.find((c) => c.nombre === "Empresa de Construcción DEF")?.id,
         fecha_inicio: fechaHace3Meses.toISOString().split("T")[0],
         fecha_fin: fechaHace1Mes.toISOString().split("T")[0], // Contrato vencido
@@ -151,7 +151,7 @@ export async function POST() {
         observaciones: "Obra finalizada",
       },
       {
-        id: "C-2023-005",
+        id: "C-2025-005",
         cliente_id: clientesData.find((c) => c.nombre === "Productora de Eventos MNO")?.id,
         fecha_inicio: fechaHace2Meses.toISOString().split("T")[0],
         fecha_fin: fechaEn10Dias.toISOString().split("T")[0],
@@ -160,7 +160,7 @@ export async function POST() {
         observaciones: "Festival de música",
       },
       {
-        id: "C-2023-006",
+        id: "C-2025-006",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora Edificios SA")?.id,
         fecha_inicio: fechaHace1Mes.toISOString().split("T")[0],
         fecha_fin: fechaEn2Meses.toISOString().split("T")[0],
@@ -169,7 +169,7 @@ export async function POST() {
         observaciones: "Edificio residencial",
       },
       {
-        id: "C-2023-007",
+        id: "C-2025-007",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos Corporativos SRL")?.id,
         fecha_inicio: fechaHace3Meses.toISOString().split("T")[0],
         fecha_fin: fechaEn1Mes.toISOString().split("T")[0],
@@ -178,7 +178,7 @@ export async function POST() {
         observaciones: "Congreso internacional",
       },
       {
-        id: "C-2023-008",
+        id: "C-2025-008",
         cliente_id: clientesData.find((c) => c.nombre === "Municipalidad de Tigre")?.id,
         fecha_inicio: fechaHace2Meses.toISOString().split("T")[0],
         fecha_fin: fechaEn3Meses.toISOString().split("T")[0],
@@ -199,7 +199,7 @@ export async function POST() {
     for (let i = 0; i < 10; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-001",
+        contrato_id: "C-2025-001",
         fecha_inicio: contratos[0].fecha_inicio,
         fecha_fin: contratos[0].fecha_fin,
       })
@@ -209,7 +209,7 @@ export async function POST() {
     for (let i = 10; i < 18; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-002",
+        contrato_id: "C-2025-002",
         fecha_inicio: contratos[1].fecha_inicio,
         fecha_fin: contratos[1].fecha_fin,
       })
@@ -219,7 +219,7 @@ export async function POST() {
     for (let i = 18; i < 30; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-003",
+        contrato_id: "C-2025-003",
         fecha_inicio: contratos[2].fecha_inicio,
         fecha_fin: contratos[2].fecha_fin,
       })
@@ -229,7 +229,7 @@ export async function POST() {
     for (let i = 30; i < 35; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-004",
+        contrato_id: "C-2025-004",
         fecha_inicio: contratos[3].fecha_inicio,
         fecha_fin: contratos[3].fecha_fin,
       })
@@ -239,7 +239,7 @@ export async function POST() {
     for (let i = 35; i < 41; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-005",
+        contrato_id: "C-2025-005",
         fecha_inicio: contratos[4].fecha_inicio,
         fecha_fin: contratos[4].fecha_fin,
       })
@@ -249,7 +249,7 @@ export async function POST() {
     for (let i = 41; i < 44; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-006",
+        contrato_id: "C-2025-006",
         fecha_inicio: contratos[5].fecha_inicio,
         fecha_fin: contratos[5].fecha_fin,
       })
@@ -259,7 +259,7 @@ export async function POST() {
     for (let i = 44; i < 48; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-007",
+        contrato_id: "C-2025-007",
         fecha_inicio: contratos[6].fecha_inicio,
         fecha_fin: contratos[6].fecha_fin,
       })
@@ -269,7 +269,7 @@ export async function POST() {
     for (let i = 48; i < 50; i++) {
       banosContratos.push({
         bano_id: banosIds[i],
-        contrato_id: "C-2023-008",
+        contrato_id: "C-2025-008",
         fecha_inicio: contratos[7].fecha_inicio,
         fecha_fin: contratos[7].fecha_fin,
       })
@@ -282,81 +282,81 @@ export async function POST() {
     // Crear facturas de ejemplo (más cantidad y variedad)
     const facturas = [
       {
-        id: "F-2023-001",
+        id: "F-2025-001",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora ABC")?.id,
-        contrato_id: "C-2023-001",
+        contrato_id: "C-2025-001",
         fecha: fechaHace2Meses.toISOString().split("T")[0],
         monto: 45000,
         estado: "Pagada",
       },
       {
-        id: "F-2023-002",
+        id: "F-2025-002",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora ABC")?.id,
-        contrato_id: "C-2023-001",
+        contrato_id: "C-2025-001",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 45000,
         estado: "Pagada",
       },
       {
-        id: "F-2023-003",
+        id: "F-2025-003",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora ABC")?.id,
-        contrato_id: "C-2023-001",
+        contrato_id: "C-2025-001",
         fecha: hoy.toISOString().split("T")[0],
         monto: 45000,
         estado: "Pendiente",
       },
       {
-        id: "F-2023-004",
+        id: "F-2025-004",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos XYZ")?.id,
-        contrato_id: "C-2023-002",
+        contrato_id: "C-2025-002",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 38400,
         estado: "Pagada",
       },
       {
-        id: "F-2023-005",
+        id: "F-2025-005",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos XYZ")?.id,
-        contrato_id: "C-2023-002",
+        contrato_id: "C-2025-002",
         fecha: hoy.toISOString().split("T")[0],
         monto: 38400,
         estado: "Pendiente",
       },
       {
-        id: "F-2023-006",
+        id: "F-2025-006",
         cliente_id: clientesData.find((c) => c.nombre === "Municipalidad de San Martín")?.id,
-        contrato_id: "C-2023-003",
+        contrato_id: "C-2025-003",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 54000,
         estado: "Pagada",
       },
       {
-        id: "F-2023-007",
+        id: "F-2025-007",
         cliente_id: clientesData.find((c) => c.nombre === "Empresa de Construcción DEF")?.id,
-        contrato_id: "C-2023-004",
+        contrato_id: "C-2025-004",
         fecha: fechaHace2Meses.toISOString().split("T")[0],
         monto: 23250,
         estado: "Pagada",
       },
       {
-        id: "F-2023-008",
+        id: "F-2025-008",
         cliente_id: clientesData.find((c) => c.nombre === "Productora de Eventos MNO")?.id,
-        contrato_id: "C-2023-005",
+        contrato_id: "C-2025-005",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 29700,
         estado: "Pendiente",
       },
       {
-        id: "F-2023-009",
+        id: "F-2025-009",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora Edificios SA")?.id,
-        contrato_id: "C-2023-006",
+        contrato_id: "C-2025-006",
         fecha: hoy.toISOString().split("T")[0],
         monto: 12600,
         estado: "Pendiente",
       },
       {
-        id: "F-2023-010",
+        id: "F-2025-010",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos Corporativos SRL")?.id,
-        contrato_id: "C-2023-007",
+        contrato_id: "C-2025-007",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 20400,
         estado: "Pagada",
@@ -370,73 +370,73 @@ export async function POST() {
     // Crear remitos de ejemplo
     const remitos = [
       {
-        id: "R-2023-001",
+        id: "R-2025-001",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora ABC")?.id,
-        contrato_id: "C-2023-001",
+        contrato_id: "C-2025-001",
         fecha: fechaHace3Meses.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 10,
       },
       {
-        id: "R-2023-002",
+        id: "R-2025-002",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos XYZ")?.id,
-        contrato_id: "C-2023-002",
+        contrato_id: "C-2025-002",
         fecha: fechaHace2Meses.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 8,
       },
       {
-        id: "R-2023-003",
+        id: "R-2025-003",
         cliente_id: clientesData.find((c) => c.nombre === "Municipalidad de San Martín")?.id,
-        contrato_id: "C-2023-003",
+        contrato_id: "C-2025-003",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 12,
       },
       {
-        id: "R-2023-004",
+        id: "R-2025-004",
         cliente_id: clientesData.find((c) => c.nombre === "Empresa de Construcción DEF")?.id,
-        contrato_id: "C-2023-004",
+        contrato_id: "C-2025-004",
         fecha: fechaHace3Meses.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 5,
       },
       {
-        id: "R-2023-005",
+        id: "R-2025-005",
         cliente_id: clientesData.find((c) => c.nombre === "Empresa de Construcción DEF")?.id,
-        contrato_id: "C-2023-004",
+        contrato_id: "C-2025-004",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         tipo: "Retiro",
         cantidad: 5,
       },
       {
-        id: "R-2023-006",
+        id: "R-2025-006",
         cliente_id: clientesData.find((c) => c.nombre === "Productora de Eventos MNO")?.id,
-        contrato_id: "C-2023-005",
+        contrato_id: "C-2025-005",
         fecha: fechaHace2Meses.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 6,
       },
       {
-        id: "R-2023-007",
+        id: "R-2025-007",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora Edificios SA")?.id,
-        contrato_id: "C-2023-006",
+        contrato_id: "C-2025-006",
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 3,
       },
       {
-        id: "R-2023-008",
+        id: "R-2025-008",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos Corporativos SRL")?.id,
-        contrato_id: "C-2023-007",
+        contrato_id: "C-2025-007",
         fecha: fechaHace3Meses.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 4,
       },
       {
-        id: "R-2023-009",
+        id: "R-2025-009",
         cliente_id: clientesData.find((c) => c.nombre === "Municipalidad de Tigre")?.id,
-        contrato_id: "C-2023-008",
+        contrato_id: "C-2025-008",
         fecha: fechaHace2Meses.toISOString().split("T")[0],
         tipo: "Entrega",
         cantidad: 2,
@@ -454,8 +454,8 @@ export async function POST() {
         fecha: fechaHace2Meses.toISOString().split("T")[0],
         monto: 45000,
         metodo_pago: "Transferencia",
-        comprobante: "TR-2023-001",
-        factura_id: "F-2023-001",
+        comprobante: "TR-2025-001",
+        factura_id: "F-2025-001",
         observaciones: "Pago primera factura",
       },
       {
@@ -463,8 +463,8 @@ export async function POST() {
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 45000,
         metodo_pago: "Transferencia",
-        comprobante: "TR-2023-002",
-        factura_id: "F-2023-002",
+        comprobante: "TR-2025-002",
+        factura_id: "F-2025-002",
         observaciones: "Pago segunda factura",
       },
       {
@@ -472,8 +472,8 @@ export async function POST() {
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 38400,
         metodo_pago: "Cheque",
-        comprobante: "CH-2023-001",
-        factura_id: "F-2023-004",
+        comprobante: "CH-2025-001",
+        factura_id: "F-2025-004",
         observaciones: "Pago primera factura",
       },
       {
@@ -481,8 +481,8 @@ export async function POST() {
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 54000,
         metodo_pago: "Transferencia",
-        comprobante: "TR-2023-003",
-        factura_id: "F-2023-006",
+        comprobante: "TR-2025-003",
+        factura_id: "F-2025-006",
         observaciones: "Pago primera factura",
       },
       {
@@ -490,8 +490,8 @@ export async function POST() {
         fecha: fechaHace2Meses.toISOString().split("T")[0],
         monto: 23250,
         metodo_pago: "Efectivo",
-        comprobante: "EF-2023-001",
-        factura_id: "F-2023-007",
+        comprobante: "EF-2025-001",
+        factura_id: "F-2025-007",
         observaciones: "Pago única factura",
       },
       {
@@ -499,8 +499,8 @@ export async function POST() {
         fecha: fechaHace1Mes.toISOString().split("T")[0],
         monto: 20400,
         metodo_pago: "Transferencia",
-        comprobante: "TR-2023-004",
-        factura_id: "F-2023-010",
+        comprobante: "TR-2025-004",
+        factura_id: "F-2025-010",
         observaciones: "Pago primera factura",
       },
     ]
@@ -514,7 +514,7 @@ export async function POST() {
       {
         tipo: "pago",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora ABC")?.id,
-        mensaje: "Factura F-2023-003 pendiente de pago por $45,000",
+        mensaje: "Factura F-2025-003 pendiente de pago por $45,000",
         fecha: hoy.toISOString().split("T")[0],
         prioridad: "alta",
         resuelta: false,
@@ -522,7 +522,7 @@ export async function POST() {
       {
         tipo: "contrato",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos XYZ")?.id,
-        contrato_id: "C-2023-002",
+        contrato_id: "C-2025-002",
         mensaje: "Contrato vence en 5 días",
         fecha: hoy.toISOString().split("T")[0],
         prioridad: "media",
@@ -531,7 +531,7 @@ export async function POST() {
       {
         tipo: "pago",
         cliente_id: clientesData.find((c) => c.nombre === "Eventos XYZ")?.id,
-        mensaje: "Factura F-2023-005 pendiente de pago por $38,400",
+        mensaje: "Factura F-2025-005 pendiente de pago por $38,400",
         fecha: hoy.toISOString().split("T")[0],
         prioridad: "media",
         resuelta: false,
@@ -539,7 +539,7 @@ export async function POST() {
       {
         tipo: "pago",
         cliente_id: clientesData.find((c) => c.nombre === "Productora de Eventos MNO")?.id,
-        mensaje: "Factura F-2023-008 vencida por $29,700",
+        mensaje: "Factura F-2025-008 vencida por $29,700",
         fecha: hoy.toISOString().split("T")[0],
         prioridad: "alta",
         resuelta: false,
@@ -547,7 +547,7 @@ export async function POST() {
       {
         tipo: "contrato",
         cliente_id: clientesData.find((c) => c.nombre === "Productora de Eventos MNO")?.id,
-        contrato_id: "C-2023-005",
+        contrato_id: "C-2025-005",
         mensaje: "Contrato vence en 10 días",
         fecha: hoy.toISOString().split("T")[0],
         prioridad: "baja",
@@ -556,7 +556,7 @@ export async function POST() {
       {
         tipo: "pago",
         cliente_id: clientesData.find((c) => c.nombre === "Constructora Edificios SA")?.id,
-        mensaje: "Factura F-2023-009 pendiente de pago por $12,600",
+        mensaje: "Factura F-2025-009 pendiente de pago por $12,600",
         fecha: hoy.toISOString().split("T")[0],
         prioridad: "media",
         resuelta: false,

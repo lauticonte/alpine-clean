@@ -82,6 +82,7 @@ export default function NuevoContratoPage() {
   const [clienteSeleccionado, setClienteSeleccionado] = useState<string>("")
   const [valorDiario, setValorDiario] = useState<string>("")
   const [direccionEntrega, setDireccionEntrega] = useState<string>("")
+  const [direccionEditada, setDireccionEditada] = useState(false)
   const [observaciones, setObservaciones] = useState<string>("")
   const [guardando, setGuardando] = useState(false)
   const [numeroContrato, setNumeroContrato] = useState<string>("")
@@ -125,18 +126,33 @@ export default function NuevoContratoPage() {
     fetchData()
   }, [])
 
+  // Cuando cambia el cliente seleccionado, si la dirección no fue editada manualmente, autocompletar con la dirección del cliente
+  useEffect(() => {
+    const direccionCliente = clientes.find((c) => String(c.id) === String(clienteSeleccionado))?.direccion || ""
+    if (!direccionEditada) {
+      setDireccionEntrega(direccionCliente)
+    }
+  }, [clienteSeleccionado, clientes])
+
   const handleBanoToggle = (id: string) => {
     setBanoSeleccionado((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    console.log("handleSubmit ejecutado")
     setGuardando(true)
+    console.log("clienteSeleccionado", clienteSeleccionado)
 
     try {
       if (!fechaInicio || !fechaFin || !clienteSeleccionado || !valorDiario || !direccionEntrega) {
+        if (!fechaInicio) console.log('Campo faltante: fechaInicio')
+        if (!fechaFin) console.log('Campo faltante: fechaFin')
+        if (!clienteSeleccionado) console.log('Campo faltante: clienteSeleccionado')
+        if (!valorDiario) console.log('Campo faltante: valorDiario')
+        if (!direccionEntrega) console.log('Campo faltante: direccionEntrega')
         toast.error("Por favor complete todos los campos requeridos")
-        return
+        return 
       }
 
       if (banoSeleccionado.length === 0) {
@@ -145,6 +161,7 @@ export default function NuevoContratoPage() {
       }
 
       const supabase = createClientSupabaseClient()
+      console.log("supabase", supabase)
 
       // Verificar la conexión a Supabase
       const { data: testData, error: testError } = await supabase
@@ -382,10 +399,13 @@ export default function NuevoContratoPage() {
                 <Label htmlFor="direccion">Dirección de Entrega</Label>
                 <Input
                   id="direccion"
-                  placeholder={clientes.find((c) => String(c.id) === String(clienteSeleccionado))?.direccion || ""}
+                  placeholder="Dirección de entrega"
                   required
-                  value={clientes.find((c) => String(c.id) === String(clienteSeleccionado))?.direccion || ""}
-                  onChange={(e) => setDireccionEntrega(e.target.value)}
+                  value={direccionEntrega}
+                  onChange={(e) => {
+                    setDireccionEntrega(e.target.value)
+                    setDireccionEditada(true)
+                  }}
                 />
               </div>
             </div>

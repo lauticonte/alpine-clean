@@ -27,6 +27,14 @@ interface Cliente {
   direccion: string
 }
 
+interface Factura {
+  id: string
+  monto: number
+  estado: string
+  fecha: string
+  contrato_id: string
+}
+
 export default function RegistrarPagoPage() {
   const router = useRouter()
   const [fechaPago, setFechaPago] = useState<Date>()
@@ -37,6 +45,12 @@ export default function RegistrarPagoPage() {
   const [activeTab, setActiveTab] = useState("detalles")
   const [clientes, setClientes] = useState<Cliente[]>([])
   const [loading, setLoading] = useState(true)
+  const [clienteSeleccionado, setClienteSeleccionado] = useState<string>("")
+  const [direccion, setDireccion] = useState<string>("")
+  const [facturasPendientes, setFacturasPendientes] = useState<Factura[]>([])
+  const [facturaSeleccionada, setFacturaSeleccionada] = useState<string>("")
+  const [monto, setMonto] = useState<number>(0)
+  const [montoMaximo, setMontoMaximo] = useState<number>(0)
 
   // Obtener clientes de Supabase
   useEffect(() => {
@@ -64,6 +78,43 @@ export default function RegistrarPagoPage() {
     fetchClientes()
   }, [])
 
+  useEffect(() => {
+    if (!clienteSeleccionado) {
+      setFacturasPendientes([])
+      setFacturaSeleccionada("")
+      setMonto(0)
+      setMontoMaximo(0)
+      return
+    }
+    const fetchFacturas = async () => {
+      const supabase = createClientSupabaseClient()
+      const { data, error } = await supabase
+        .from("facturas")
+        .select("id, monto, estado, fecha, contrato_id")
+        .eq("cliente_id", clienteSeleccionado)
+        .eq("estado", "Pendiente")
+        .order("fecha", { ascending: true })
+      if (!error && data) {
+        setFacturasPendientes(data)
+        setFacturaSeleccionada("")
+        setMonto(0)
+        setMontoMaximo(0)
+      }
+    }
+    fetchFacturas()
+  }, [clienteSeleccionado])
+
+  useEffect(() => {
+    if (facturaSeleccionada) {
+      const f = facturasPendientes.find(f => f.id === facturaSeleccionada)
+      setMonto(f ? f.monto : 0)
+      setMontoMaximo(f ? f.monto : 0)
+    } else {
+      setMonto(0)
+      setMontoMaximo(0)
+    }
+  }, [facturaSeleccionada, facturasPendientes])
+
   const handleFacturaFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFacturaFile(e.target.files[0])
@@ -78,11 +129,16 @@ export default function RegistrarPagoPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (monto > montoMaximo) {
+      alert(`El monto no puede ser mayor al pendiente: $${montoMaximo}`)
+      return
+    }
     // Aquí iría la lógica para registrar el pago y los documentos asociados
     console.log("Tiene factura:", tieneFactura)
     console.log("Tiene remito:", tieneRemito)
     console.log("Archivo de factura:", facturaFile)
     console.log("Archivo de remito:", remitoFile)
+    console.log("Monto pagado:", monto)
     router.push("/cuentas")
   }
 
@@ -113,21 +169,61 @@ export default function RegistrarPagoPage() {
               <CardContent className="space-y-6 pt-6">
                 <div className="space-y-2">
                   <Label htmlFor="cliente">Cliente</Label>
-                  <Select required>
+                  <Select required value={clienteSeleccionado} onValueChange={setClienteSeleccionado}>
                     <SelectTrigger id="cliente">
-                      <SelectValue placeholder="Seleccionar cliente" />
+                      <SelectValue placeholder="Seleccionar cliente">
+                        {clientes.find((c) => String(c.id) === String(clienteSeleccionado))?.nombre || ""}
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       {clientes.map((cliente) => (
-                        <SelectItem key={cliente.id} value={cliente.id}>
+                        <SelectItem key={String(cliente.id)} value={String(cliente.id)}>
                           {cliente.nombre}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
-
+                <div className="space-y-2">
+                  <Label htmlFor="factura">Factura Pendiente</Label>
+                  <Select required value={facturaSeleccionada} onValueChange={setFacturaSeleccionada} disabled={!clienteSeleccionado || facturasPendientes.length === 0}>
+                    <SelectTrigger id="factura">
+                      <SelectValue placeholder={facturasPendientes.length === 0 ? "Sin facturas pendientes" : "Seleccionar factura"}>
+                        {facturasPendientes.find(f => f.id === facturaSeleccionada)?.id || ""}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {facturasPendientes.map((factura) => (
+                        <SelectItem key={factura.id} value={factura.id}>
+                          {factura.id} - ${factura.monto} ({factura.fecha})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="direccion">Dirección</Label>
+                  <Input
+                    id="direccion"
+                    placeholder={clientes.find((c) => String(c.id) === String(clienteSeleccionado))?.direccion || ""}
+                    value={clientes.find((c) => String(c.id) === String(clienteSeleccionado))?.direccion || ""}
+                    onChange={(e) => setDireccion(e.target.value)}
+                  />
+                </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label>Monto</Label>
+                    <Input
+                      id="monto"
+                      type="number"
+                      required
+                      min={1}
+                      max={montoMaximo}
+                      placeholder={montoMaximo ? `Hasta $${montoMaximo}` : ""}
+                      value={monto}
+                      onChange={e => setMonto(Number(e.target.value))}
+                    />
+                  </div>
                   <div className="space-y-2">
                     <Label>Fecha de Pago</Label>
                     <Popover>
@@ -147,10 +243,6 @@ export default function RegistrarPagoPage() {
                         <Calendar mode="single" selected={fechaPago} onSelect={setFechaPago} initialFocus />
                       </PopoverContent>
                     </Popover>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="monto">Monto</Label>
-                    <Input id="monto" type="number" min="0" step="100" required />
                   </div>
                 </div>
 

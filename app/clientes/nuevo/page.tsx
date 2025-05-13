@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { getSupabaseClient } from "@/lib/supabase/client"
+import { createClientSupabaseClient } from "@/lib/supabase/client"
 import { toast } from "@/components/ui/use-toast"
 
 export default function NuevoClientePage() {
@@ -31,7 +31,7 @@ export default function NuevoClientePage() {
     setIsLoading(true)
 
     try {
-      const supabase = getSupabaseClient()
+      const supabase = createClientSupabaseClient()
 
       const { error } = await supabase.from("clientes").insert([formData])
 
